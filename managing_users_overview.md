@@ -19,7 +19,7 @@ Currently supported authentication methods are:
 By default, openshift uses `htpasswd` and a "flat file" for authentication. Take a look at this configuration.
 
 ```
-grep -A4 "Local Authentication" /etc/origin/master/master-config.yaml
+grep -A4 "htpasswd_auth" /etc/origin/master/master-config.yaml
     name: "htpasswd_auth"
     provider:
       apiVersion: v1
