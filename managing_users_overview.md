@@ -20,10 +20,10 @@ By default, openshift uses `htpasswd` and a "flat file" for authentication. Take
 
 ```
 grep -A4 "Local Authentication" /etc/origin/master/master-config.yaml
-    name: "Local Authentication"
+    name: "htpasswd_auth"
     provider:
       apiVersion: v1
-      file: /etc/origin/openshift-passwd
+      file: /etc/origin/master/htpasswd
       kind: HTPasswdPasswordIdentityProvider
 ```
 
