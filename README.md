@@ -12,8 +12,8 @@ Setting up Cluster (don't do these)
 
 Standalone Labs
 
-* [Deploying Logging](aggr_logging.md)
 * [Deploying Metrics](deploying_metrics.md)
+* [Deploying Logging](aggr_logging.md)
 * [Managing Users Overview](managing_users_overview.md)
 * [Assigning Users to Project Roles](assigning_users_to_project_roles.md)
 * [Creating Custom Roles](creating_custom_roles.md)
