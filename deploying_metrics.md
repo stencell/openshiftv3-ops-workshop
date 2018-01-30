@@ -10,43 +10,6 @@ Switch to the `openshift-infra` project
 oc project openshift-infra
 ```
 
-Metrics needs a backend storage for the database. You'll need a `pvc` before you proceed. Below is an example using [cns](cns.md) as the backend storage (your `pvc` might differ).
-
-```yaml
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
- name: metrics-storage
- annotations:
-  volume.beta.kubernetes.io/storage-class: gluster-block
-spec:
- accessModes:
-  - ReadWriteOnce
- resources:
-   requests:
-     storage: 20Gi
-```
-
-Create this claim.
-
-```
-$ oc create -f metrics-storage-pvc.yaml
-persistentvolumeclaim "metrics-storage" created
-```
-
-Wait for it to go from "Pending" to "Bound"
-```
-$ oc get pvc
-NAME              STATUS    VOLUME    CAPACITY   ACCESSMODES   STORAGECLASS    AGE
-metrics-storage   Pending                                      gluster-block   7s
-
-$ oc get pvc
-NAME              STATUS    VOLUME                                     CAPACITY   ACCESSMODES   STORAGECLASS    AGE
-metrics-storage   Bound     pvc-5ea4435f-c410-11e7-8f74-029fe14a0ff8   20Gi       RWO           gluster-block   3s
-```
-
-## Step 2
-
 Using the ansible playbook provided by OpenShift, deploy the metrics stack and make you change these options to what makes sense to you. Take note of the options `openshift_metrics_cassandra_storage_type` and `openshift_metrics_cassandra_pvc_size`.
 
 ```
