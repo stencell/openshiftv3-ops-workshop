@@ -12,6 +12,8 @@ Setting up Cluster (don't do these)
 
 Standalone Labs
 
+* [Deploying Logging](aggr_logging.md)
+* [Deploying Metrics](deploying_metrics.md)
 * [Managing Users Overview](managing_users_overview.md)
 * [Assigning Users to Project Roles](assigning_users_to_project_roles.md)
 * [Creating Custom Roles](creating_custom_roles.md)
@@ -20,8 +22,6 @@ Standalone Labs
 * [Limiting Number of Self-Provisioned Projects](limiting_number_of_self-provisioned_projects.md)
 * [Installing and Using Cockpit](installing_and_using_cockpit.md)
 * [Deploying Cockpit as a container](deploying_cockpit_as_a_container.md)
-* [Deploying Metrics](deploying_metrics.md)
-* [Deploying Logging](aggr_logging.md)
 
 ## Extended Lab Exercises 
 
