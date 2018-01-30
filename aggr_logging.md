@@ -1,6 +1,6 @@
 # Deploying Log Aggregation
 
-In this lab you will learn how to deploy log aggregation. Deployment of logging needs, similar to the [metrics](deploying_metrics.md) lab, a backend storage. Please see either the [Persistant Volume Claim](creating_persistent_volume.md) or the [Container Native Storage](cns.md) labs before doing this lab.
+In this lab you will learn how to deploy log aggregation. Deployment of logging needs, similar to the [metrics](deploying_metrics.md) lab, a backend storage. This lab will leverage dynamic PV creation to provide this storage.
 
 ## Step 1
 
@@ -10,52 +10,22 @@ Switch to the `logging` project
 oc project logging
 ```
 
-Logging needs a backend storage for data collection. You'll need a `pvc` before you proceed. Below is an example using [cns](cns.md) as the backend storage (your `pvc` might differ).
-
-```yaml
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
- name: logging-storage
- annotations:
-  volume.beta.kubernetes.io/storage-class: gluster-block
-spec:
- accessModes:
-  - ReadWriteOnce
- resources:
-   requests:
-     storage: 20Gi
-```
-
-Create this claim.
-
-```
-$ oc create -f logging-storage-pvc.yaml
-persistentvolumeclaim "logging-storage" created
-```
-
-Wait for it to go from "Pending" to "Bound"
-```
-$ oc get pvc
-NAME              STATUS    VOLUME                                     CAPACITY   ACCESSMODES   STORAGECLASS    AGE
-logging-storage   Bound     pvc-4fa4be3a-c415-11e7-8f74-029fe14a0ff8   20Gi       RWO           gluster-block   8s
-```
-
-Label this storage to use in the deployment
-
-```
-$ oc label pvc logging-storage logging-storage=true
-persistentvolumeclaim "logging-storage" labeled
-```
-
-## Step 2
-
 Using the ansible playbook provided by OpenShift, deploy the logging stack and make sure these options are set to what makes sense to you. Take note of the option `openshift_logging_es_pv_selector`. This must be set to what you labled above.
 
 ```
 ansible-playbook /usr/share/ansible/openshift-ansible/playbooks/byo/openshift-cluster/openshift-logging.yml \
--e openshift_logging_kibana_hostname=kibana.apps.example.com \
 -e openshift_logging_install_logging=true \
+-e openshift_logging_use_ops=true \
+-e openshift_logging_install_eventrouter=true \
+-e openshift_logging_purge_logging=true \
+-e openshift_logging_es_cpu_limit=1000m \
+-e openshift_logging_es_memory_limit=1Gi \
+-e openshift_logging_es_pvc_dynamic=true \
+-e openshift_logging_es_pvc_size=6Gi \
+-e openshift_logging_es_ops_pvc_dynamic=true \
+-e openshift_logging_es_ops_pvc_size=4Gi \
+-e openshift_logging_es_ops_cpu_limit=1000m \
+-e openshift_logging_es_ops_memory_limit=1Gi \
 -e openshift_logging_es_pv_selector="logging-storage=true"
 ```
 
