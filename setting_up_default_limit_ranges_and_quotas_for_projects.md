@@ -117,7 +117,7 @@ Now under `projectConfig` you need to reference this new default config by editi
 grep -A 5 projectConfig /etc/origin/master/master-config.yaml
 projectConfig:
   projectRequestTemplate: "default/project-request"
-  defaultNodeSelector: region=primary
+  defaultNodeSelector: ""
   projectRequestMessage: ""
   projectRequestTemplate: ""
   securityAllocator:
