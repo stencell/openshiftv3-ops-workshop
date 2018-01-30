@@ -40,12 +40,12 @@ demo      72455092-6dad-11e7-b505-5254005e6599                   Local Authentic
 To add a user into OpenShift; just add the user to the backend authentication system. In this case; we use the `htpasswd` command to update the flat file.
 
 ```
-htpasswd /etc/origin/openshift-passwd user1
+htpasswd /etc/origin/master/htpasswd testuser
 New password: 
 Re-type new password: 
 Adding password for user user1
 
-cat /etc/origin/openshift-passwd 
+cat /etc/origin/master/htpasswd 
 demo:$apr1$tuMj6pjc$uHo8IoNUoK0mGx6omnI1l1
 user1:$apr1$dYwgH8a9$0IjfdOm2DsN7.LvdBRV6F0
 ```
