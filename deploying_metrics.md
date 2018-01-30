@@ -47,25 +47,17 @@ metrics-storage   Bound     pvc-5ea4435f-c410-11e7-8f74-029fe14a0ff8   20Gi     
 
 ## Step 2
 
-Using the ansible playbook provided by OpenShift, deploy the metrics stack and make you change these options to what makes sense to you. Take note of the options `openshift_metrics_cassandra_storage_type` and `openshift_metrics_cassandra_pvc_size`. The size must match the claim you had above.
+Using the ansible playbook provided by OpenShift, deploy the metrics stack and make you change these options to what makes sense to you. Take note of the options `openshift_metrics_cassandra_storage_type` and `openshift_metrics_cassandra_pvc_size`.
 
 ```
 ansible-playbook /usr/share/ansible/openshift-ansible/playbooks/byo/openshift-cluster/openshift-metrics.yml \
--e openshift_metrics_install_metrics=True \
--e openshift_metrics_hawkular_hostname=hawkular.apps.example.com \
--e openshift_metrics_cassandra_storage_type=pv \
--e openshift_metrics_cassandra_pvc_size=20Gi
-```
-
-There is a known issue where you'll have two `pvc`'s show up. Overwrite the the `rc` with the right value. 
-```
-oc volume rc/hawkular-cassandra-1 --add --overwrite --name=cassandra-data -t pvc --claim-name=metrics-storage
-```
-
-And delete the other `pvc`
-```
-$ oc delete pvc metrics-cassandra-1
-persistentvolumeclaim "metrics-cassandra-1" deleted
+-e openshift_metrics_install_metrics=true \
+-e openshift_metrics_cassandra_pvc_size=5G \
+-e openshift_metrics_cassandra_storage_type=dynamic \
+-e openshift_metrics_cassandra_limits_cpu=1500m \
+-e openshift_metrics_cassandra_requests_cpu=500m \
+-e openshift_metrics_cassandra_limits_memory=2Gi \
+-e openshift_metrics_cassandra_requests_memory=500Mi
 ```
 
 ## Conclusion
