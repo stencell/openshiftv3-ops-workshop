@@ -13,7 +13,8 @@ oc project logging
 Using the ansible playbook provided by OpenShift, deploy the logging stack and make sure these options are set to what makes sense to you. Take note of the option `openshift_logging_es_pv_selector`. This must be set to what you labled above.
 
 ```
-ansible-playbook /usr/share/ansible/openshift-ansible/playbooks/byo/openshift-cluster/openshift-logging.yml \
+ansible-playbook -i <your-inventory-file> /
+/usr/share/ansible/openshift-ansible/playbooks/byo/openshift-cluster/openshift-logging.yml \
 -e openshift_logging_install_logging=true \
 -e openshift_logging_use_ops=true \
 -e openshift_logging_install_eventrouter=true \
