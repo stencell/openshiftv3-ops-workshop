@@ -7,7 +7,7 @@ In this lab you will learn how to grant user access to different projects. This 
 You will need to create a user (or if you are using LDAP, you can use an LDAP user). If you are using the default installation; create a user using the `htpasswd` command
 
 ```
-htpasswd /etc/origin/openshift-passwd user-1
+htpasswd /etc/origin/master/htpasswd user-1
 New password: 
 Re-type new password: 
 Adding password for user user-1
