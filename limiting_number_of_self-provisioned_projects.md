@@ -38,7 +38,7 @@ It breaks down like this:
 * For selector `level=advanced`, a maximum number of 10 projects will be allowed.
 * For the third entry, no selector is specified. This means that it will be applied to any user that doesn’t satisfy the previous two rules. Because rules are evaluated in order, this rule should be specified last.
 
-Restart the `atomic-openshift-master` service
+Restart the `atomic-openshift-master-api.service` 
 
 ## Step 2
 
