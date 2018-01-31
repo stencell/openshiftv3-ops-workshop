@@ -43,11 +43,11 @@ To add a user into OpenShift; just add the user to the backend authentication sy
 htpasswd /etc/origin/master/htpasswd testuser
 New password: 
 Re-type new password: 
-Adding password for user user1
+Adding password for user testuser
 
 cat /etc/origin/master/htpasswd 
 demo:$apr1$tuMj6pjc$uHo8IoNUoK0mGx6omnI1l1
-user1:$apr1$dYwgH8a9$0IjfdOm2DsN7.LvdBRV6F0
+testuser:$apr1$dYwgH8a9$0IjfdOm2DsN7.LvdBRV6F0
 ```
 
 Now check OpenShift. Note that the user you just created is not there.
@@ -61,9 +61,8 @@ demo      72455092-6dad-11e7-b505-5254005e6599                   Local Authentic
 Using the webui or the `oc` command; login using this new user. Example
 
 ```
-oc login -u user1
-Authentication required for https://master.example.com:8443 (openshift)
-Username: user1
+oc login -u testuser https://ocp-master-userX-1.openshift.stencell.net
+Username: testuser
 Password: 
 Login successful.
 
@@ -72,7 +71,7 @@ You dont have any projects. You can try to create a new project, by running
     oc new-project <projectname>
 
 oc whoami
-user1
+testuser
 ```
 
 Now take a look at your users
@@ -81,7 +80,7 @@ Now take a look at your users
 oc get users
 NAME      UID                                    FULL NAME       IDENTITIES
 demo      72455092-6dad-11e7-b505-5254005e6599                   Local Authentication:demo
-user1     b40b2c5f-6e47-11e7-b505-5254005e6599                   Local Authentication:user1
+testuser     b40b2c5f-6e47-11e7-b505-5254005e6599                   Local Authentication:testuser
 
 ```
 
@@ -104,25 +103,24 @@ Take a look at the users
 oc get users
 NAME      UID                                    FULL NAME       IDENTITIES
 demo      72455092-6dad-11e7-b505-5254005e6599                   Local Authentication:demo
-user1     b40b2c5f-6e47-11e7-b505-5254005e6599                   Local Authentication:user
+testuser     b40b2c5f-6e47-11e7-b505-5254005e6599                   Local Authentication:user
 ```
 
 OpenShift does not know about what is going on in the backend authentication system. The user would simply not be able to login
 
 
 ```
-oc login -u user1
-Authentication required for https://master.example.com:8443 (openshift)
-Username: user1
-Password: 
+oc login -u testuser https://ocp-master-userX-1.openshift.stencell.net
+Username: testuser
+Password:  
 Login failed (401 Unauthorized)
 ```
 
 Once you have locked/deleted a user from the backend authentication system. Just simply delete the user
 
 ```
-oc delete user user1
-user "user1" deleted
+oc delete user testuser
+user "testuser" deleted
 ```
 
 You should now see the user gone from the list
