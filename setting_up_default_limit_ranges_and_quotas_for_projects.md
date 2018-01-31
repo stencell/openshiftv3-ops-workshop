@@ -126,32 +126,32 @@ projectConfig:
 Restart the `atomic-openshift-master` service
 
 ```
-systemctl restart atomic-openshift-master.service 
+systemctl restart atomic-openshift-master-api.service 
 ```
 
 Verify that it is running
 
 ```
-systemctl status -l atomic-openshift-master.service 
-● atomic-openshift-master.service - Atomic OpenShift Master
-   Loaded: loaded (/usr/lib/systemd/system/atomic-openshift-master.service; enabled; vendor preset: disabled)
-   Active: active (running) since Mon 2017-07-24 14:57:20 PDT; 30s ago
+systemctl status -l atomic-openshift-master-api.service 
+● atomic-openshift-master-api.service - Atomic OpenShift Master API
+   Loaded: loaded (/etc/systemd/system/atomic-openshift-master-api.service; enabled; vendor preset: disabled)
+   Active: active (running) since Tue 2018-01-30 22:54:28 UTC; 21h ago
      Docs: https://github.com/openshift/origin
- Main PID: 46889 (openshift)
-   Memory: 275.9M
-   CGroup: /system.slice/atomic-openshift-master.service
-           └─46889 /usr/bin/openshift start master --config=/etc/origin/master/master-config.yaml --loglevel=2
+ Main PID: 2440 (docker-current)
+   Memory: 5.4M
+   CGroup: /system.slice/atomic-openshift-master-api.service
+           └─2440 /usr/bin/docker-current run --rm --privileged --net=host --name atomic-openshift-ma...
 
-Jul 24 14:57:46 master.172.16.1.10.nip.io atomic-openshift-master[46889]: I0724 14:57:46.236682   46889 panics.go:76] GET /api/v1/namespaces/myproject/secrets/default-dockercfg-pr4b5: (1.646163ms) 200 [[openshift/v1.5.2+43a9be4 (linux/amd64) kubernetes/43a9be4] 172.16.1.11:40302]
-Jul 24 14:57:46 master.172.16.1.10.nip.io atomic-openshift-master[46889]: I0724 14:57:46.810129   46889 panics.go:76] GET /api/v1/namespaces/default/secrets/router-token-4knlh: (1.969476ms) 200 [[openshift/v1.5.2+43a9be4 (linux/amd64) kubernetes/43a9be4] 172.16.1.10:34418]
-Jul 24 14:57:46 master.172.16.1.10.nip.io atomic-openshift-master[46889]: I0724 14:57:46.810230   46889 panics.go:76] GET /api/v1/namespaces/default/secrets/router-certs: (1.622118ms) 200 [[openshift/v1.5.2+43a9be4 (linux/amd64) kubernetes/43a9be4] 172.16.1.10:34418]
-Jul 24 14:57:47 master.172.16.1.10.nip.io atomic-openshift-master[46889]: I0724 14:57:47.076398   46889 panics.go:76] GET /api/v1/namespaces/default/secrets/router-dockercfg-7wzg6: (1.44486ms) 200 [[openshift/v1.5.2+43a9be4 (linux/amd64) kubernetes/43a9be4] 172.16.1.10:34418]
-Jul 24 14:57:47 master.172.16.1.10.nip.io atomic-openshift-master[46889]: I0724 14:57:47.855186   46889 panics.go:76] GET /api/v1/nodes?resourceVersion=0: (773.971µs) 200 [[openshift/v1.5.2+43a9be4 (linux/amd64) kubernetes/43a9be4] 172.16.1.10:34416]
-Jul 24 14:57:49 master.172.16.1.10.nip.io atomic-openshift-master[46889]: I0724 14:57:49.977809   46889 panics.go:76] GET /api/v1/namespaces/limits-quotas/secrets/default-token-f8gwn: (1.267002ms) 200 [[openshift/v1.5.2+43a9be4 (linux/amd64) kubernetes/43a9be4] 172.16.1.11:40302]
-Jul 24 14:57:50 master.172.16.1.10.nip.io atomic-openshift-master[46889]: I0724 14:57:50.236576   46889 panics.go:76] GET /api/v1/namespaces/limits-quotas/secrets/default-dockercfg-qr9mr: (1.708641ms) 200 [[openshift/v1.5.2+43a9be4 (linux/amd64) kubernetes/43a9be4] 172.16.1.11:40302]
-Jul 24 14:57:51 master.172.16.1.10.nip.io atomic-openshift-master[46889]: I0724 14:57:51.294091   46889 panics.go:76] GET /api/v1/nodes?fieldSelector=metadata.name%3Dmaster.172.16.1.10.nip.io&resourceVersion=0: (694.846µs) 200 [[openshift/v1.5.2+43a9be4 (linux/amd64) kubernetes/43a9be4] 172.16.1.10:34418]
-Jul 24 14:57:51 master.172.16.1.10.nip.io atomic-openshift-master[46889]: I0724 14:57:51.297765   46889 panics.go:76] GET /apis/extensions/v1beta1/thirdpartyresources: (1.078497ms) 200 [[openshift/v1.5.2+43a9be4 (linux/amd64) kubernetes/43a9be4] 172.16.1.10:34416]
-Jul 24 14:57:51 master.172.16.1.10.nip.io atomic-openshift-master[46889]: I0724 14:57:51.303477   46889 panics.go:76] PUT /api/v1/nodes/master.172.16.1.10.nip.io/status: (5.325891ms) 200 [[openshift/v1.5.2+43a9be4 (linux/amd64) kubernetes/43a9be4] 172.16.1.10:34418]
+Jan 31 20:45:16 ip-10-47-3-65.us-west-2.compute.internal atomic-openshift-master-api[2440]: I0131 20:45:16.133208       1 rest.go:362] Starting watch for /api/v1/services, rv=263116 labels= fields= timeout=8m46s
+Jan 31 20:45:19 ip-10-47-3-65.us-west-2.compute.internal atomic-openshift-master-api[2440]: I0131 20:45:19.504759       1 rbac.go:116] RBAC DENY: user "system:anonymous" groups ["system:unauthenticated"] cannot "get" resource "namespaces" in namespace "openshift-metrics"
+Jan 31 20:45:19 ip-10-47-3-65.us-west-2.compute.internal atomic-openshift-master-api[2440]: I0131 20:45:19.613418       1 rest.go:362] Starting watch for /api/v1/endpoints, rv=301619 labels= fields= timeout=9m15s
+Jan 31 20:45:20 ip-10-47-3-65.us-west-2.compute.internal atomic-openshift-master-api[2440]: I0131 20:45:20.109262       1 rest.go:362] Starting watch for /apis/image.openshift.io/v1/imagestreams, rv=299721 labels= fields= timeout=6m55s
+Jan 31 20:45:20 ip-10-47-3-65.us-west-2.compute.internal atomic-openshift-master-api[2440]: E0131 20:45:20.181302       1 watcher.go:210] watch chan error: etcdserver: mvcc: required revision has been compacted
+Jan 31 20:45:21 ip-10-47-3-65.us-west-2.compute.internal atomic-openshift-master-api[2440]: I0131 20:45:21.193543       1 rest.go:362] Starting watch for /apis/image.openshift.io/v1/imagestreams, rv=301626 labels= fields= timeout=6m31s
+Jan 31 20:45:26 ip-10-47-3-65.us-west-2.compute.internal atomic-openshift-master-api[2440]: I0131 20:45:26.072560       1 rest.go:362] Starting watch for /api/v1/nodes, rv=301621 labels= fields=metadata.name=ip-10-47-3-48.us-west-2.compute.internal timeout=6m6s
+Jan 31 20:45:27 ip-10-47-3-65.us-west-2.compute.internal atomic-openshift-master-api[2440]: I0131 20:45:27.646190       1 rest.go:362] Starting watch for /api/v1/namespaces, rv=300395 labels= fields= timeout=6m35s
+Jan 31 20:45:27 ip-10-47-3-65.us-west-2.compute.internal atomic-openshift-master-api[2440]: E0131 20:45:27.694945       1 watcher.go:210] watch chan error: etcdserver: mvcc: required revision has been compacted
+Jan 31 20:45:28 ip-10-47-3-65.us-west-2.compute.internal atomic-openshift-master-api[2440]: I0131 20:45:28.717870       1 rest.go:362] Starting watch for /api/v1/namespaces, rv=301642 labels= fields= timeout=6m3s
 ```
 
 ## Step 3
