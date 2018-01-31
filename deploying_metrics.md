@@ -13,7 +13,7 @@ oc project openshift-infra
 Using the ansible playbook provided by OpenShift, deploy the metrics stack and make you change these options to what makes sense to you. Take note of the options `openshift_metrics_cassandra_storage_type` and `openshift_metrics_cassandra_pvc_size`.
 
 ```
-ansible-playbook -i <your-inventory-file> /
+ansible-playbook -i <your-inventory-file> \
 /usr/share/ansible/openshift-ansible/playbooks/byo/openshift-cluster/openshift-metrics.yml \
 -e openshift_metrics_install_metrics=true \
 -e openshift_metrics_cassandra_pvc_size=5G \
