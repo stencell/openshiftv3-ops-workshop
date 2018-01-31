@@ -92,9 +92,9 @@ What happened? OpenShift creates a corresponding user once a successful authenti
 Now we will go through the steps of deleting a user. First step is to remove/lock the user account in the backend authenication method. In this case, it is as easy as removing them from the file.
 
 ```
-sed -i '/^user1/d' /etc/origin/openshift-passwd 
+sed -i '/^user1/d' /etc/origin/master/htpasswd
 
-cat /etc/origin/openshift-passwd
+cat /etc/origin/master/htpasswd
 demo:$apr1$tuMj6pjc$uHo8IoNUoK0mGx6omnI1l1
 ```
 
