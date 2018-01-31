@@ -26,7 +26,7 @@ ansible-playbook -i <your-inventory-file> \
 -e openshift_logging_es_ops_pvc_dynamic=true \
 -e openshift_logging_es_ops_pvc_size=4Gi \
 -e openshift_logging_es_ops_cpu_limit=1000m \
--e openshift_logging_es_ops_memory_limit=1Gi \
+-e openshift_logging_es_ops_memory_limit=1Gi 
 
 ```
 
