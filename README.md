@@ -33,9 +33,11 @@ Labs that require additional resources (e.g. storage, servers, services)
 
 ## CloudForms 4.6
 
-* git clone https://github.com/stencell/openshift-ansible.git
-* cd openshift-ansible
-* git checkout release-3.7
-* git branch
-* cd
-* ansible-playbook -i <your-inventory-file> /root/openshift-ansible/playbooks/byo/openshift-management/config.yml -e openshift_management_install_management=true -e openshift_management_install_beta=true -e openshift_management_app_template=cfme-template -e openshift_management_storage_class=cloudprovider
+```
+git clone https://github.com/stencell/openshift-ansible.git
+cd openshift-ansible
+git checkout release-3.7
+git branch
+cd
+ansible-playbook -i <your-inventory-file> /root/openshift-ansible/playbooks/byo/openshift-management/config.yml -e openshift_management_install_management=true -e openshift_management_install_beta=true -e openshift_management_app_template=cfme-template -e openshift_management_storage_class=cloudprovider
+```
