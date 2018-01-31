@@ -13,20 +13,20 @@ oc project logging
 Using the ansible playbook provided by OpenShift, deploy the logging stack and make sure these options are set to what makes sense to you.
 
 ```
-ansible-playbook -i <your-inventory-file> /
-/usr/share/ansible/openshift-ansible/playbooks/byo/openshift-cluster/openshift-logging.yml /
--e openshift_logging_install_logging=true /
--e openshift_logging_use_ops=true /
--e openshift_logging_install_eventrouter=true /
--e openshift_logging_purge_logging=true /
--e openshift_logging_es_cpu_limit=1000m /
--e openshift_logging_es_memory_limit=1Gi /
--e openshift_logging_es_pvc_dynamic=true /
--e openshift_logging_es_pvc_size=6Gi /
--e openshift_logging_es_ops_pvc_dynamic=true /
--e openshift_logging_es_ops_pvc_size=4Gi /
--e openshift_logging_es_ops_cpu_limit=1000m /
--e openshift_logging_es_ops_memory_limit=1Gi /
+ansible-playbook -i <your-inventory-file> \
+/usr/share/ansible/openshift-ansible/playbooks/byo/openshift-cluster/openshift-logging.yml \
+-e openshift_logging_install_logging=true \
+-e openshift_logging_use_ops=true \
+-e openshift_logging_install_eventrouter=true \
+-e openshift_logging_purge_logging=true \
+-e openshift_logging_es_cpu_limit=1000m \
+-e openshift_logging_es_memory_limit=1Gi \
+-e openshift_logging_es_pvc_dynamic=true \
+-e openshift_logging_es_pvc_size=6Gi \
+-e openshift_logging_es_ops_pvc_dynamic=true \
+-e openshift_logging_es_ops_pvc_size=4Gi \
+-e openshift_logging_es_ops_cpu_limit=1000m \
+-e openshift_logging_es_ops_memory_limit=1Gi \
 
 ```
 
