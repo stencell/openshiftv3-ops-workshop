@@ -21,6 +21,10 @@ Standalone Labs
 * [Setting up Default Limit Ranges and Quotas for Projects](setting_up_default_limit_ranges_and_quotas_for_projects.md)
 * [Limiting Number of Self-Provisioned Projects](limiting_number_of_self-provisioned_projects.md)
 
+## App-Dev Lab Exercises
+
+* [BlueGreen Deployment](https://github.com/RedHatWorkshops/openshiftv3-workshop/blob/master/9_Blue_Green_Deployments.adoc)
+
 ## Extended Lab Exercises 
 
 Labs that require additional resources (e.g. storage, servers, services)
